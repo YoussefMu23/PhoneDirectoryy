@@ -37,12 +37,14 @@ public class GuestHandler implements UserActions {
         }
     }
 
+    
+    // // This function allow us to search for in contactList.
     @Override
-    public void freestyleSearch(String freeSearch) {
+    public void freestyleSearch(String searchFree) {
 
         for (Contact contact : contactList.getContacts()) {
-            if (contact.getLastName().contains(freeSearch) || contact.getFirstName().contains(freeSearch) ||
-                    contact.getAddress().contains(freeSearch) || contact.getPhoneNumber().contains(freeSearch)) {
+            if (contact.getLastName().contains(searchFree) || contact.getFirstName().contains(searchFree) ||
+                    contact.getAddress().contains(searchFree) || contact.getPhoneNumber().contains(searchFree)) {
                 System.out.println(contact);
             }
         }
