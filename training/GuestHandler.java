@@ -38,7 +38,7 @@ public class GuestHandler implements UserActions {
     }
 
     
-    // // This function allow us to search for in contactList.
+    // // This function allow us to freestyle Search 
     @Override
     public void freestyleSearch(String searchFree) {
 
