@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class UserChoiceList {
 
-        private static ContactList contactList = new ContactList();
+        private static ContactList contactList = new ContactList(); // Instantiating ContactList
         
-        private static AdminHandler adminHandler = new AdminHandler(contactList);
+        private static AdminHandler adminHandler = new AdminHandler(contactList); // Instantiating admin handling 
         
-        private static GuestHandler guestHandler = new GuestHandler(contactList);
+        private static GuestHandler guestHandler = new GuestHandler(contactList); // Instantiating guest handling
 
         public static void main(String[] args) {
 
