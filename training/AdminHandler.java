@@ -33,7 +33,7 @@ public class AdminHandler implements UserActions {
         add(newContact);
     }
 
-    // adds the contact to the contact
+    // adds the contact to the contactlist
     private void add(Contact contact) {
 
         if (!find(contact.getPhoneNumber())) {
