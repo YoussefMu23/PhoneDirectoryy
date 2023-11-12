@@ -33,6 +33,7 @@ public class AdminHandler implements UserActions {
         add(newContact);
     }
 
+    // adds the contact to the contact
     private void add(Contact contact) {
 
         if (!find(contact.getPhoneNumber())) {
@@ -43,6 +44,7 @@ public class AdminHandler implements UserActions {
         }
     }
 
+    // looks for phoneNumber in the conctact
     private boolean find(String phoneNumber) {
 
         for (Contact contact : contactList.getContacts()) {
@@ -53,6 +55,7 @@ public class AdminHandler implements UserActions {
         return false;
     }
 
+    // Delete Contact from contactList
     public void deleteContact(String phoneNumber) {
         Contact contactDel = findContact(phoneNumber);
 
@@ -75,6 +78,7 @@ public class AdminHandler implements UserActions {
         return null;
     }
 
+    // Update the Contact, findContact looks up phoneNumber first
     public void updateContact(String phoneNumber, Scanner input) {
         Contact contactToUpdate = findContact(phoneNumber);
 
@@ -97,6 +101,7 @@ public class AdminHandler implements UserActions {
         }
     }
 
+    // Shows the Contact if is empty else it shows the contactList
     public void displayContacts() {
         if (contactList.getContacts().isEmpty()) {
             System.out.println("The list has no contacts.");
@@ -108,6 +113,7 @@ public class AdminHandler implements UserActions {
         }
     }
 
+    // This function allow us to search for last name in contactList. 
     @Override
     public void searchByLastName(String lastName) {
         for (Contact contact : contactList.getContacts()) {
@@ -117,6 +123,7 @@ public class AdminHandler implements UserActions {
         }
     }
 
+    // This function allow us to search for first name in contactList.
     @Override
     public void searchByFirstName(String firstName) {
 
@@ -127,6 +134,7 @@ public class AdminHandler implements UserActions {
         }
     }
 
+    // This function allow us to search for address in contactList.
     @Override
     public void searchByAddress(String address) {
 
@@ -137,12 +145,13 @@ public class AdminHandler implements UserActions {
         }
     }
 
+    // // This function allow us to search for in contactList.
     @Override
-    public void freestyleSearch(String searchTerm) {
+    public void freestyleSearch(String searchFree) {
 
         for (Contact contact : contactList.getContacts()) {
-            if (contact.getLastName().contains(searchTerm) || contact.getFirstName().contains(searchTerm) ||
-                    contact.getAddress().contains(searchTerm) || contact.getPhoneNumber().contains(searchTerm)) {
+            if (contact.getLastName().contains(searchFree) || contact.getFirstName().contains(searchFree) ||
+                    contact.getAddress().contains(searchFree) || contact.getPhoneNumber().contains(searchFree)) {
                 System.out.println(contact);
             }
         }
