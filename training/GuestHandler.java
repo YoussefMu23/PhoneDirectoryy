@@ -1,26 +1,52 @@
 package training;
 
 public class GuestHandler implements UserActions {
+    private ContactList contactList;
+
+    public GuestHandler(ContactList contactList) {
+        this.contactList = contactList;
+    }
+
     @Override
     public void searchByLastName(String lastName) {
-        // Implement guest search by last name
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getLastName().equalsIgnoreCase(lastName)) {
+                System.out.println(contact);
+            }
+        }
     }
 
     @Override
     public void searchByFirstName(String firstName) {
-        // Implement guest search by first name
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+                System.out.println(contact);
+            }
+        }
     }
 
     @Override
     public void searchByAddress(String address) {
-        // Implement guest search by address
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getAddress().equalsIgnoreCase(address)) {
+                System.out.println(contact);
+            }
+        }
     }
 
     @Override
-    public void freestyleSearch(String searchTerm) {
-        // Implement guest freestyle search
+    public void freestyleSearch(String freeSearch) {
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getLastName().contains(freeSearch) || contact.getFirstName().contains(freeSearch) ||
+                    contact.getAddress().contains(freeSearch) || contact.getPhoneNumber().contains(freeSearch)) {
+                System.out.println(contact);
+            }
+        }
     }
 
-    // Additional guest-specific methods
-}
 
+}

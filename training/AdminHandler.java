@@ -1,178 +1,117 @@
 package training;
 
-import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Referens:
+ * https://www.geeksforgeeks.org/crud-operations-in-student-management-system-in-java/#
+ */
 
+public class AdminHandler implements UserActions {
+    private ContactList contactList;
 
-
-
-//Class
-
-/// denna är tillagd
-public class AdminHandler implements UserActions{
-
-
-
-    //Creating en empty LinkedList
-    private LinkedList<Contact> list;
-
-
-    public AdminHandler() {
-        list = new LinkedList<>();
-
+    // Constructor updated to accept ContactList
+    public AdminHandler(ContactList contactList) {
+        this.contactList = contactList;
     }
 
-
     // Add contact
-    public void add(Contact contact) {
+    public void addContact(Scanner input) {
+        System.out.println("Enter last name: ");
+        String lastName = input.nextLine();
+        System.out.println("Enter first name: ");
+        String firstName = input.nextLine();
+        System.out.println("Enter age: ");
+        int age = input.nextInt();
+        input.nextLine(); // Consume the newline character
+        System.out.println("Enter address: ");
+        String address = input.nextLine();
+        System.out.println("Enter phone number: ");
+        String phoneNumber = input.nextLine();
+
+        Contact newContact = new Contact(lastName, firstName, age, address, phoneNumber);
+        add(newContact);
+    }
+
+    private void add(Contact contact) {
+
         if (!find(contact.getPhoneNumber())) {
-            list.add(contact);
+            contactList.getContacts().add(contact);
+            System.out.println("Contact added successfully!");
         } else {
-            System.out.println("Contact with this phone number already exists.");
+            System.out.println("Contact already exists in the contact list");
         }
     }
 
-    public boolean find(String phoneNumber) {
+    private boolean find(String phoneNumber) {
 
-        for (Contact l : list) {
-            // Checking if Conctact by phoneNumber
-            if (l.getPhoneNumber().equals(phoneNumber))
-
-                System.out.println(l);
-            return true;
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getPhoneNumber().equals(phoneNumber)) {
+                return true;
+            }
         }
         return false;
     }
 
-    // Delete Register
-    public void delete(String contPhoneNumber) {
+    public void deleteContact(String phoneNumber) {
+        Contact contactDel = findContact(phoneNumber);
 
-        Contact contactDel = null;
-
-        // Iterating record list
-        for (Contact ll : list) {
-            // Finding Contact to delete by phoneNumber
-            if (ll.getPhoneNumber() == contPhoneNumber) {
-                contactDel = ll;
-            }
-        }
-
-        // If contactDel is null, show error message.
-        // else remove the contact from the contact list
-        if (contactDel == null) {
-            // Display no contact found
-            System.out.println("Invalid contact phone number");
+        if (contactDel != null) {
+            contactList.getContacts().remove(contactDel);
+            System.out.println("Contact successfully removed from list");
         } else {
-
-            list.remove(contactDel);
-            //Display message for succesful deletion of contact
-            System.out.println("Successfully removed contact from list");
+            System.out.println("Contact with the given phone number not found");
         }
     }
 
-    //Find contact
-    // phone Number
+    private Contact findContact(String phoneNumber) {
 
-    public Contact findContact(String phoneNumber) {
-        //Iterate Contact list
-        // using for each loop
-        for (Contact l : list) {
+        for (Contact contact : contactList.getContacts()) {
 
-            //Checking record by phone Number
-            if (l.getPhoneNumber().equals(phoneNumber)) {
-                return l;
+            if (contact.getPhoneNumber().equals(phoneNumber)) {
+                return contact;
             }
         }
-
         return null;
     }
 
-    //Update Contact
+    public void updateContact(String phoneNumber, Scanner input) {
+        Contact contactToUpdate = findContact(phoneNumber);
 
-    public void update(String number, Scanner input) {
+        if (contactToUpdate != null) {
+            System.out.println("Enter new last name: ");
+            contactToUpdate.setLastName(input.nextLine());
+            System.out.println("Enter new first name: ");
+            contactToUpdate.setFirstName(input.nextLine());
+            System.out.println("Enter new age: ");
+            contactToUpdate.setAge(input.nextInt());
+            input.nextLine(); // Consume newline
+            System.out.println("Enter new address: ");
+            contactToUpdate.setAddress(input.nextLine());
+            System.out.println("Enter new phone number: ");
+            contactToUpdate.setPhoneNumber(input.nextLine());
 
-        if (find(number)) {
-            Contact con = findContact(number);
-
-            //Display message only
-            System.out.println("What is the new Contact phone number?");
-            String phoneNumber = input.nextLine();
-
-            //Display message only
-            System.out.println("What is the new Contact last name?");
-            String lastName = input.nextLine();
-
-            //Display message only
-            System.out.println("What is the new Contact first name?");
-            String firstName = input.nextLine();
-
-            //Display message only
-            System.out.println("What is the new Contact age?");
-            int age = input.nextInt();
-
-            //Display message only
-            System.out.println("What is the new Contact address?");
-            String address = input.nextLine();
-
-            con.setPhoneNumber(phoneNumber);
-            con.setLastName(lastName);
-            con.setFirstName(firstName);
-            con.setAge(age);
-            con.setAddress(address);
-            System.out.println("Contact updated Successfully");
-
-        }
-
-        else {
-            System.out.println("Contact not found in the Contact list");
-
-
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    public void deleteContact(String contPhoneNumber) {
-        Contact contactDel = null;
-        for (Contact ll : list) {
-            if (ll.getPhoneNumber().equals(contPhoneNumber)) {
-                contactDel = ll;
-            }
-        }
-        if (contactDel == null) {
-            System.out.println("Invalid contact phone number");
+            System.out.println("Contact updated successfully!");
         } else {
-            list.remove(contactDel);
-            System.out.println("Successfully removed contact from list");
+            System.out.println("Contact not found.");
         }
     }
 
-
-
-
-    public void display() {
-        if (list.isEmpty()) {
-            System.out.println("The list has no contacts");
+    public void displayContacts() {
+        if (contactList.getContacts().isEmpty()) {
+            System.out.println("The list has no contacts.");
         } else {
             System.out.println("List of Contacts:");
-        }
-        for (Contact contact : list) {
-            System.out.println(contact);
+            for (Contact contact : contactList.getContacts()) {
+                System.out.println(contact);
+            }
         }
     }
 
     @Override
     public void searchByLastName(String lastName) {
-        for (Contact contact : list) {
-            if (contact.getLastName().equals(lastName)) {
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getLastName().equalsIgnoreCase(lastName)) {
                 System.out.println(contact);
             }
         }
@@ -180,8 +119,9 @@ public class AdminHandler implements UserActions{
 
     @Override
     public void searchByFirstName(String firstName) {
-        for (Contact contact : list) {
-            if (contact.getFirstName().equals(firstName)) {
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
                 System.out.println(contact);
             }
         }
@@ -189,8 +129,9 @@ public class AdminHandler implements UserActions{
 
     @Override
     public void searchByAddress(String address) {
-        for (Contact contact : list) {
-            if (contact.getAddress().equals(address)) {
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getAddress().equalsIgnoreCase(address)) {
                 System.out.println(contact);
             }
         }
@@ -198,33 +139,12 @@ public class AdminHandler implements UserActions{
 
     @Override
     public void freestyleSearch(String searchTerm) {
-        for (Contact contact : list) {
-            if (contact.getLastName().contains(searchTerm) || contact.getFirstName().contains(searchTerm)
-                    || contact.getAddress().contains(searchTerm) || contact.getPhoneNumber().contains(searchTerm)) {
+
+        for (Contact contact : contactList.getContacts()) {
+            if (contact.getLastName().contains(searchTerm) || contact.getFirstName().contains(searchTerm) ||
+                    contact.getAddress().contains(searchTerm) || contact.getPhoneNumber().contains(searchTerm)) {
                 System.out.println(contact);
             }
         }
     }
-
-    public  void addContact(Scanner input, AdminHandler admin) {
-        System.out.println("Enter last name: ");
-        String lastName = input.next();
-        System.out.println("Enter first name: ");
-        String firstName = input.next();
-        System.out.println("Enter age: ");
-        int age = input.nextInt();
-        System.out.println("Enter address: ");
-        String address = input.next();
-        System.out.println("Enter phone number: ");
-        String phoneNumber = input.next();
-
-        Contact newContact = new Contact(lastName, firstName, age, address, phoneNumber);
-        admin.add(newContact);
-
-        System.out.println("Contact added successfully!");
-    }
-
-
-
-
 }
