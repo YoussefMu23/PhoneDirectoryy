@@ -67,6 +67,8 @@ public class AdminHandler implements UserActions {
         }
     }
 
+
+    // looks for contact in the contact list with help of phone number
     private Contact findContact(String phoneNumber) {
 
         for (Contact contact : contactList.getContacts()) {
