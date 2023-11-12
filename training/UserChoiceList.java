@@ -10,12 +10,15 @@ import java.util.Scanner;
 public class UserChoiceList {
 
         private static ContactList contactList = new ContactList();
+        
         private static AdminHandler adminHandler = new AdminHandler(contactList);
+        
         private static GuestHandler guestHandler = new GuestHandler(contactList);
 
         public static void main(String[] args) {
 
                 Scanner input = new Scanner(System.in);
+                
                 String userInput;
 
                 do {
@@ -40,6 +43,8 @@ public class UserChoiceList {
 
         }
 
+       
+        
         private static void handleGuestMenu(Scanner input) {
                 String userInput;
 
@@ -73,6 +78,8 @@ public class UserChoiceList {
                         }
                 } while (!userInput.equals("exit"));
         }
+       
+        
         private static void handleAdminMenu(Scanner input) {
                 String userInput;
 
@@ -121,6 +128,7 @@ public class UserChoiceList {
                 } while (!userInput.equals("exit"));
         }
 
+        // This shows up the main Menu
         private static void mainMenu() {
                 System.out.println("MAIN MENU");
                 System.out.println("1: Guest");
@@ -129,6 +137,8 @@ public class UserChoiceList {
                 System.out.print("Enter your selection: ");
         }
 
+
+        //This shows up the guest Menu
         private static void guestMenu() {
                 System.out.println("GUEST MENU");
                 System.out.println("1: Search for last name");
@@ -139,6 +149,7 @@ public class UserChoiceList {
                 System.out.print("Enter your choice: ");
         }
 
+        //This shows up the admin Menu
         private static void adminMenu() {
                 System.out.println("ADMIN MENU");
                 System.out.println("1: Search for last name");
