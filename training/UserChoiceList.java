@@ -3,9 +3,6 @@ package training;
 import java.util.Scanner;
 
 
-/** referenslista:
- * https://www.geeksforgeeks.org/string-in-switch-case-in-java/
- */
 
 public class UserChoiceList {
 
@@ -25,6 +22,10 @@ public class UserChoiceList {
                         mainMenu();
                         userInput = input.nextLine();
 
+
+                        /** referenslista:
+                         * https://www.geeksforgeeks.org/string-in-switch-case-in-java/
+                        */
                         switch (userInput) {
                                 case "1":
                                         handleGuestMenu(input);
