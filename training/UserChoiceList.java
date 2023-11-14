@@ -14,13 +14,14 @@ public class UserChoiceList {
 
         public static void main(String[] args) {
 
-                Scanner input = new Scanner(System.in);
+                Scanner input = new Scanner(System.in); // Scanner input created 
                 
-                String userInput;
+                String userInput;         // Create variable userInput
 
+                // do - while loop 
                 do {
                         mainMenu();
-                        userInput = input.nextLine();
+                        userInput = input.nextLine();         // store the user input in userInput variable 
 
 
                         /** referenslista:
@@ -40,7 +41,7 @@ public class UserChoiceList {
                                         System.out.println("Invalid input");
                                         break;
                         }
-                } while (!userInput.equals("quit"));
+                } while (!userInput.equals("quit")); // when userinput equals to quit, the do while will quit. 
 
         }
 
@@ -49,6 +50,7 @@ public class UserChoiceList {
         private static void handleGuestMenu(Scanner input) {
                 String userInput;
 
+                // do while - loop
                 do {
                         guestMenu();
                         userInput = input.nextLine();
@@ -77,13 +79,14 @@ public class UserChoiceList {
                                         System.out.println("Invalid input in Guest Menu");
                                         break;
                         }
-                } while (!userInput.equals("exit"));
+                } while (!userInput.equals("exit")); // exit the do while when the input equals to exit.
         }
        
         
         private static void handleAdminMenu(Scanner input) {
                 String userInput;
 
+                // do while - loop
                 do {
                         adminMenu();
                         userInput = input.nextLine();
@@ -126,7 +129,7 @@ public class UserChoiceList {
                                         System.out.println("Invalid input in Admin Menu");
                                         break;
                         }
-                } while (!userInput.equals("exit"));
+                } while (!userInput.equals("exit")); // // exit the do while when the input equals to exit.
         }
 
         // This shows up the main Menu
