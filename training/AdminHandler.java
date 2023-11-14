@@ -23,7 +23,7 @@ public class AdminHandler implements UserActions {
         String firstName = input.nextLine();
         System.out.println("Enter age: ");
         int age = input.nextInt();
-        input.nextLine(); // Consume the newline character
+        input.nextLine();
         System.out.println("Enter address: ");
         String address = input.nextLine();
         System.out.println("Enter phone number: ");
@@ -91,7 +91,7 @@ public class AdminHandler implements UserActions {
             contactToUpdate.setFirstName(input.nextLine());
             System.out.println("Enter new age: ");
             contactToUpdate.setAge(input.nextInt());
-            input.nextLine(); // Consume newline
+            input.nextLine(); 
             System.out.println("Enter new address: ");
             contactToUpdate.setAddress(input.nextLine());
             System.out.println("Enter new phone number: ");
