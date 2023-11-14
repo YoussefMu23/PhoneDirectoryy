@@ -41,7 +41,7 @@ public class UserChoiceList {
                                         System.out.println("Invalid input");
                                         break;
                         }
-                } while (!userInput.equals("quit")); // when userinput equals to quit, the do while will quit. 
+                } while (!userInput.equals("quit")); // when userinput equals to quit, the do while will quit and the program will also quit. 
 
         }
 
