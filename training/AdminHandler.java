@@ -15,17 +15,22 @@ public class AdminHandler implements UserActions {
         this.contactList = contactList;
     }
 
-    // Add contact
+    // Register contact
     public void addContact(Scanner input) {
+        
         System.out.println("Enter last name: ");
         String lastName = input.nextLine();
+        
         System.out.println("Enter first name: ");
         String firstName = input.nextLine();
+        
         System.out.println("Enter age: ");
         int age = input.nextInt();
         input.nextLine();
+        
         System.out.println("Enter address: ");
         String address = input.nextLine();
+        
         System.out.println("Enter phone number: ");
         String phoneNumber = input.nextLine();
 
@@ -37,9 +42,11 @@ public class AdminHandler implements UserActions {
     private void add(Contact contact) {
 
         if (!find(contact.getPhoneNumber())) {
+            
             contactList.getContacts().add(contact);
             System.out.println("Contact added successfully!");
         } else {
+            
             System.out.println("Contact already exists in the contact list");
         }
     }
@@ -48,6 +55,7 @@ public class AdminHandler implements UserActions {
     private boolean find(String phoneNumber) {
 
         for (Contact contact : contactList.getContacts()) {
+            
             if (contact.getPhoneNumber().equals(phoneNumber)) {
                 return true;
             }
@@ -60,9 +68,11 @@ public class AdminHandler implements UserActions {
         Contact contactDel = findContact(phoneNumber);
 
         if (contactDel != null) {
+            
             contactList.getContacts().remove(contactDel);
             System.out.println("Contact successfully removed from list");
         } else {
+            
             System.out.println("Contact with the given phone number not found");
         }
     }
@@ -82,32 +92,42 @@ public class AdminHandler implements UserActions {
 
     // Update the Contact, findContact looks up phoneNumber first
     public void updateContact(String phoneNumber, Scanner input) {
+        
         Contact contactToUpdate = findContact(phoneNumber);
 
         if (contactToUpdate != null) {
+            
             System.out.println("Enter new last name: ");
             contactToUpdate.setLastName(input.nextLine());
+            
             System.out.println("Enter new first name: ");
             contactToUpdate.setFirstName(input.nextLine());
+            
             System.out.println("Enter new age: ");
             contactToUpdate.setAge(input.nextInt());
             input.nextLine(); 
+            
             System.out.println("Enter new address: ");
             contactToUpdate.setAddress(input.nextLine());
+            
             System.out.println("Enter new phone number: ");
             contactToUpdate.setPhoneNumber(input.nextLine());
 
             System.out.println("Contact updated successfully!");
         } else {
+            
             System.out.println("Contact not found.");
         }
     }
 
     // Shows the Contact if is empty else it shows the contactList
     public void displayContacts() {
+        
         if (contactList.getContacts().isEmpty()) {
+            
             System.out.println("The list has no contacts.");
         } else {
+            
             System.out.println("List of Contacts:");
             for (Contact contact : contactList.getContacts()) {
                 System.out.println(contact);
@@ -118,8 +138,11 @@ public class AdminHandler implements UserActions {
     // This function allow us to search for last name in contactList. 
     @Override
     public void searchByLastName(String lastName) {
+        
         for (Contact contact : contactList.getContacts()) {
-            if (contact.getLastName().equalsIgnoreCase(lastName)) {
+            
+            if (contact.getLastName().equals(lastName)) {
+                
                 System.out.println(contact);
             }
         }
@@ -130,7 +153,9 @@ public class AdminHandler implements UserActions {
     public void searchByFirstName(String firstName) {
 
         for (Contact contact : contactList.getContacts()) {
-            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+            
+            if (contact.getFirstName().equals(firstName)) {
+                
                 System.out.println(contact);
             }
         }
@@ -141,7 +166,9 @@ public class AdminHandler implements UserActions {
     public void searchByAddress(String address) {
 
         for (Contact contact : contactList.getContacts()) {
-            if (contact.getAddress().equalsIgnoreCase(address)) {
+            
+            if (contact.getAddress().equals(address)) {
+                
                 System.out.println(contact);
             }
         }
@@ -152,8 +179,10 @@ public class AdminHandler implements UserActions {
     public void freestyleSearch(String searchFree) {
 
         for (Contact contact : contactList.getContacts()) {
+            
             if (contact.getLastName().contains(searchFree) || contact.getFirstName().contains(searchFree) ||
                     contact.getAddress().contains(searchFree) || contact.getPhoneNumber().contains(searchFree)) {
+                
                 System.out.println(contact);
             }
         }
