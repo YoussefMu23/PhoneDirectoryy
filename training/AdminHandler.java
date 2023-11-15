@@ -16,26 +16,39 @@ public class AdminHandler implements UserActions {
     }
 
     // Register contact
+   // Add contact
     public void addContact(Scanner input) {
-        
+
         System.out.println("Enter last name: ");
         String lastName = input.nextLine();
-        
+
         System.out.println("Enter first name: ");
         String firstName = input.nextLine();
-        
+
         System.out.println("Enter age: ");
         int age = input.nextInt();
         input.nextLine();
-        
-        System.out.println("Enter address: ");
-        String address = input.nextLine();
-        
+
+        System.out.println("Address: ");
+        System.out.println("Enter street name: ");
+        String streetName = input.nextLine();
+
+        System.out.println("Enter city: ");
+        String city = input.nextLine();
+
+        System.out.println("Enter post code: ");
+        String postCode = input.nextLine();
+
+        System.out.println("Enter port number: ");
+        String portNumber = input.nextLine();
+
         System.out.println("Enter phone number: ");
         String phoneNumber = input.nextLine();
 
+        Address address = new Address(streetName,city, postCode, portNumber);
         Contact newContact = new Contact(lastName, firstName, age, address, phoneNumber);
         add(newContact);
+
     }
 
     // adds the contact to the contactlist
@@ -91,34 +104,50 @@ public class AdminHandler implements UserActions {
     }
 
     // Update the Contact, findContact looks up phoneNumber first
-    public void updateContact(String phoneNumber, Scanner input) {
-        
+ public void updateContact(String phoneNumber, Scanner input) {
+
         Contact contactToUpdate = findContact(phoneNumber);
 
         if (contactToUpdate != null) {
-            
             System.out.println("Enter new last name: ");
             contactToUpdate.setLastName(input.nextLine());
-            
+
             System.out.println("Enter new first name: ");
             contactToUpdate.setFirstName(input.nextLine());
-            
+
             System.out.println("Enter new age: ");
             contactToUpdate.setAge(input.nextInt());
-            input.nextLine(); 
-            
-            System.out.println("Enter new address: ");
-            contactToUpdate.setAddress(input.nextLine());
-            
+            input.nextLine();
+
+            System.out.println("Address: ");
+
+            System.out.println("Enter new street name: ");
+            String newStreetName = input.nextLine();
+
+            System.out.println("Enter new city: ");
+            String newCity = input.nextLine();
+
+            System.out.println("Enter new post code: ");
+            String newPostCode = input.nextLine();
+
+            System.out.println("Enter new port number: ");
+            String newPortNumber = input.nextLine();
+            // Create new address object
+            Address newAddress = new Address(newStreetName, newCity, newPostCode, newPortNumber);
+            // set new address to Contact
+            contactToUpdate.setAddress(newAddress);
+
             System.out.println("Enter new phone number: ");
             contactToUpdate.setPhoneNumber(input.nextLine());
 
             System.out.println("Contact updated successfully!");
         } else {
-            
+
             System.out.println("Contact not found.");
         }
+
     }
+
 
     // Shows the Contact if is empty else it shows the contactList
     public void displayContacts() {
@@ -136,14 +165,14 @@ public class AdminHandler implements UserActions {
     }
 
     // This function allow us to search for last name in contactList. 
-    @Override
-    public void searchByLastName(String lastName) {
-        
+  @Override
+    public void searchByLastName(String lastName) { // första matchingen ska ändast visas, asvsluta loppen när lastNamn är hittat.
+
         for (Contact contact : contactList.getContacts()) {
-            
-            if (contact.getLastName().equals(lastName)) {
-                
+
+            if (contact.getLastName().equalsIgnoreCase(lastName)) {
                 System.out.println(contact);
+                break;
             }
         }
     }
@@ -162,13 +191,13 @@ public class AdminHandler implements UserActions {
     }
 
     // This function allow us to search for address in contactList.
-    @Override
-    public void searchByAddress(String address) {
+   @Override
+    public void searchByAddress(String streetName) {   // söka på address: söka på  (stad, postnummer, portnummer.
 
         for (Contact contact : contactList.getContacts()) {
-            
-            if (contact.getAddress().equals(address)) {
-                
+            Address address = contact.getAddress();
+
+            if (address.getStreetName().equalsIgnoreCase(streetName)) { // Söka på gatunamn.
                 System.out.println(contact);
             }
         }
@@ -176,13 +205,14 @@ public class AdminHandler implements UserActions {
 
     // // This function allow us to search for in contactList.
     @Override
-    public void freestyleSearch(String searchFree) {
+    public void freestyleSearch(String freeSearch) {
 
         for (Contact contact : contactList.getContacts()) {
-            
-            if (contact.getLastName().contains(searchFree) || contact.getFirstName().contains(searchFree) ||
-                    contact.getAddress().contains(searchFree) || contact.getPhoneNumber().contains(searchFree)) {
-                
+            Address address = contact.getAddress();
+
+            if (contact.getLastName().contains(freeSearch.toLowerCase()) || contact.getFirstName().contains(freeSearch.toLowerCase()) ||
+                    address.getStreetName().contains(freeSearch.toLowerCase()) || contact.getPhoneNumber().contains(freeSearch.toLowerCase())) {
+
                 System.out.println(contact);
             }
         }
