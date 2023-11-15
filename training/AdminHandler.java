@@ -190,20 +190,20 @@ public class AdminHandler implements UserActions {
         }
     }
 
-    // This function allow us to search for address in contactList.
+    // This function allow us to search for street name in contactlist.
    @Override
-    public void searchByAddress(String streetName) {   // söka på address: söka på  (stad, postnummer, portnummer.
+    public void searchByAddress(String streetName) {   
 
         for (Contact contact : contactList.getContacts()) {
             Address address = contact.getAddress();
 
-            if (address.getStreetName().equalsIgnoreCase(streetName)) { // Söka på gatunamn.
+            if (address.getStreetName().equalsIgnoreCase(streetName)) { 
                 System.out.println(contact);
             }
         }
     }
 
-    // // This function allow us to search for in contactList.
+    // This function allow us to make a free search in contactList. U can search for lastname, first name, streetname and phone number. 
     @Override
     public void freestyleSearch(String freeSearch) {
 
