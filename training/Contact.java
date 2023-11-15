@@ -6,7 +6,7 @@ public class Contact {
     private String lastName;
     private String firstName;
     private int age;
-    private String address;
+    private Address address;
     private String phoneNumber;
 
     //  Default Constructor
@@ -17,8 +17,7 @@ public class Contact {
     }
 
 
-    public Contact (String lastName, String firstName, int age , String address , String phoneNumber)
-    {
+    public Contact (String lastName, String firstName, int age , Address address , String phoneNumber) {
         //Keyword refers to current instance variable
         this.lastName = lastName;
         this.firstName = firstName;
@@ -56,11 +55,11 @@ public class Contact {
     }
 
     // Getting the value of address and return value of address
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
     // Set the value of address
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -78,13 +77,10 @@ public class Contact {
         // Returning Conctact
         return "Contact{"
                 + "lastName = " + lastName + ", firstName = " + firstName
-                + ", age = " + age + ", address = " + address + ", phoneNumber = " + phoneNumber + '}';
+                + ", age = " + age +  address + ", phoneNumber = " + phoneNumber + '}';
+
 
     }
-
-
-
-
 
 
 
