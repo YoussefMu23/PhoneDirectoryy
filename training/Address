@@ -1,3 +1,4 @@
+package training;
 
 public class Address {
         private String streetName;
