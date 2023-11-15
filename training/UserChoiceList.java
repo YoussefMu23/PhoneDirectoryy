@@ -32,6 +32,19 @@ public class UserChoiceList {
                                         handleGuestMenu(input);
                                         break;
                                 case "2":
+                                        boolean correctPassword;
+
+                                        System.out.println("Enter password: ");
+                                        String password = input.nextLine();
+
+                                        if (password.equals("123456")) {
+                                                correctPassword = true;
+                                        } else {
+                                                correctPassword=false;
+                                                System.out.println("Invalide password");
+                                                break;
+                                        }
+                                        
                                         handleAdminMenu(input);
                                         break;
                                 case "quit":
