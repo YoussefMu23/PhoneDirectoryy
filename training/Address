@@ -1,0 +1,66 @@
+
+public class Address {
+        private String streetName;
+        private String city;
+        private String postCode;
+        private String portNumber;
+
+        public Address(String streetName, String city, String postCode, String portNumber) {
+        this.streetName = streetName;
+        this.city = city;
+        this.postCode = postCode;
+        this.portNumber = portNumber;
+        }
+
+
+
+
+    // Getting the value of lastName and return value of lastName
+    public String getStreetName() {
+        return streetName;
+    }
+    // Set the value of lastName
+    public void setLastName(String streetName) {
+        this.streetName = streetName;
+    }
+
+
+    public String getCity(String city) {
+        return portNumber;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostCode(String postCode) {
+            return postCode;
+    }
+
+    public void setPostCode(String PostCode) {
+            this.postCode = postCode;
+    }
+
+    public String getPortNumber(String portNumber) {
+        return portNumber;
+    }
+
+    public void setPortNumber(String portNumber) {
+        this.portNumber = portNumber;
+    }
+
+    //toString method
+    @Override
+    public String toString() {
+        // Returning Conctact
+        return " address: "
+                + "street name = " + streetName + ", City = " + city
+                + ", post code = " + postCode + ", post number = " + portNumber;
+
+
+    }
+
+
+
+
+}
