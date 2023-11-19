@@ -29,7 +29,7 @@ public class AdminHandler implements UserActions {
         }
     }
 
-    // looks for phoneNumber in the conctact
+    // looks for first name and last name in the conctact
      private boolean find(String firstName, String lastName) {
 
         for (Contact contact : contactList.getContacts()) {
@@ -91,7 +91,7 @@ public class AdminHandler implements UserActions {
     }
 
 
-    // looks for contact in the contact list with help of phone number
+    // looks for contact in the contact list with help of first and last name.
     private Contact findContact(String firstName, String lastName) {
 
         for (Contact contact : contactList.getContacts()) {
@@ -103,7 +103,7 @@ public class AdminHandler implements UserActions {
         return null;
     }
 
-    // Update the Contact, findContact looks up phoneNumber first
+    // Update the Contact, findContact looks up old first name and second looks upp old last name that was registered in the contactlist. 
   public void updateContact(String oldFirstName,String oldLastName, Scanner input) {
 
         Contact contactToUpdate = findContact(oldFirstName, oldLastName);
