@@ -15,7 +15,34 @@ public class AdminHandler implements UserActions {
         this.contactList = contactList;
     }
 
-    // Register contact
+
+    // adds the contact to the contactlist
+   private void add(Contact contact) {
+
+        if (!find(contact.getFirstName(), contact.getLastName())) {
+
+            contactList.getContacts().add(contact);
+            System.out.println("Contact added successfully!");
+        } else {
+
+            System.out.println("Contact already exists in the contact list");
+        }
+    }
+
+    // looks for phoneNumber in the conctact
+     private boolean find(String firstName, String lastName) {
+
+        for (Contact contact : contactList.getContacts()) {
+
+            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName)) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+       // Register contact
    // Add contact
     public void addContact(Scanner input) {
 
@@ -51,52 +78,25 @@ public class AdminHandler implements UserActions {
 
     }
 
-    // adds the contact to the contactlist
-    private void add(Contact contact) {
-
-        if (!find(contact.getPhoneNumber())) {
-            
-            contactList.getContacts().add(contact);
-            System.out.println("Contact added successfully!");
-        } else {
-            
-            System.out.println("Contact already exists in the contact list");
-        }
-    }
-
-    // looks for phoneNumber in the conctact
-    private boolean find(String phoneNumber) {
-
-        for (Contact contact : contactList.getContacts()) {
-            
-            if (contact.getPhoneNumber().equals(phoneNumber)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // Delete Contact from contactList
-    public void deleteContact(String phoneNumber) {
-        Contact contactDel = findContact(phoneNumber);
+     public void deleteContact(String firstName, String lastName) {
+        Contact contactDel = findContact(firstName, lastName);
 
         if (contactDel != null) {
-            
             contactList.getContacts().remove(contactDel);
             System.out.println("Contact successfully removed from list");
         } else {
-            
             System.out.println("Contact with the given phone number not found");
         }
     }
 
 
     // looks for contact in the contact list with help of phone number
-    private Contact findContact(String phoneNumber) {
+    private Contact findContact(String firstName, String lastName) {
 
         for (Contact contact : contactList.getContacts()) {
 
-            if (contact.getPhoneNumber().equals(phoneNumber)) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName)) {
                 return contact;
             }
         }
@@ -104,9 +104,9 @@ public class AdminHandler implements UserActions {
     }
 
     // Update the Contact, findContact looks up phoneNumber first
- public void updateContact(String phoneNumber, Scanner input) {
+  public void updateContact(String oldFirstName,String oldLastName, Scanner input) {
 
-        Contact contactToUpdate = findContact(phoneNumber);
+        Contact contactToUpdate = findContact(oldFirstName, oldLastName);
 
         if (contactToUpdate != null) {
             System.out.println("Enter new last name: ");
