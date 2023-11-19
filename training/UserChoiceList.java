@@ -125,12 +125,20 @@ public class UserChoiceList {
                                         adminHandler.addContact(input);
                                         break;
                                 case "6":
-                                        System.out.println("Enter phone number of contact to update:");
-                                        adminHandler.updateContact(input.nextLine(), input);
+                                        System.out.println("Enter last name of contact to update:");
+                                        String lastNameUpdate = input.nextLine();
+
+                                        System.out.println("Enter first name of contact to update:");
+                                        String firstNameUpdate = input.nextLine();
+                                        adminHandler.updateContact(lastNameUpdate, firstNameUpdate, input);
                                         break;
                                 case "7":
-                                        System.out.println("Enter phone number of contact to delete:");
-                                        adminHandler.deleteContact(input.nextLine());
+                                        System.out.println("Enter last name of contact to update:");
+                                        String lastNameDelete = input.nextLine();
+
+                                        System.out.println("Enter first name of contact to update:");
+                                        String firstNameDelete = input.nextLine();
+                                        adminHandler.deleteContact(lastNameDelete, firstNameDelete);
                                         break;
                                 case "8":
                                         adminHandler.displayContacts();
